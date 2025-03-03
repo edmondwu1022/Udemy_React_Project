@@ -31,10 +31,10 @@ export default function Header() {
                             onClick={() => navigation('/profile')}
                         >Profile</li>
                         <li className={
-                            `${(isPathMatch("/sign-up") ? " text-black border-b-red-500" : "text-gray-400")}
+                            `${(isPathMatch("/sign-in") ? " text-black border-b-red-500" : "text-gray-400")}
                             cursor-pointer py-3 text-sm font-semibold border-b-3 border-transparent`}
-                            onClick={() => navigation("/sign-up")}
-                        >Sing Up</li>
+                            onClick={() => navigation("/sign-in")}
+                        >Sing In</li>
                     </ul>
                 </div>
             </header>
