@@ -34,7 +34,7 @@ export default function Header() {
                             `${(isPathMatch("/sign-in") ? " text-black border-b-red-500" : "text-gray-400")}
                             cursor-pointer py-3 text-sm font-semibold border-b-3 border-transparent`}
                             onClick={() => navigation("/sign-in")}
-                        >Sing In</li>
+                        >Sign In</li>
                     </ul>
                 </div>
             </header>

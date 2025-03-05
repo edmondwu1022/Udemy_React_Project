@@ -12,12 +12,12 @@ export default function App() {
     <Router>
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} hand />
-        <Route path="/offers" element={<Offers />} hand />
-        <Route path="/profile" element={<Profile />} hand />
-        <Route path="/sign-in" element={<SignIn />} hand />
-        <Route path="/sign-up" element={<SignUp />} hand />
-        <Route path="/forgot-password" element={<ForgotPassword />} hand />
+        <Route path="/" element={<Home />} />
+        <Route path="/offers" element={<Offers />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
     </Router>
   </>
