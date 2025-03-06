@@ -15,6 +15,7 @@ export default function SignIn() {
         setFormDate((prevState) => ({ ...prevState, [e.target.id]: e.target.value }))
     }
 
+
     return (
         <section>
             <h1 className="text-center font-bold text-3xl mt-6">Sign In</h1>
@@ -25,7 +26,7 @@ export default function SignIn() {
                         className="w-full rounded-2xl" />
                 </div>
                 <div className="md:w-[67%] lg:w-[40%] w-full lg:ml-20">
-                    <form>
+                    <form >
                         <input
                             type="email"
                             id="email"

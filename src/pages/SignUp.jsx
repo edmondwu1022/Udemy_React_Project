@@ -1,9 +1,15 @@
 import { useState } from "react"
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"
 import { Link } from "react-router"
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
+import { doc, serverTimestamp, setDoc } from "firebase/firestore"
+import { useNavigate } from "react-router"
+import { db } from "../firebase.config"
 import OAuth from "../components/OAuth"
+import { toast } from "react-toastify"
 
 export default function SignUp() {
+
     const [showPassword, setShowPassword] = useState(false)
     const [formData, setFormDate] = useState({
         name: "",
@@ -11,11 +17,35 @@ export default function SignUp() {
         password: ""
     })
     const { name, email, password } = formData
+    const navigation = useNavigate()
 
     function onChange(e) {
         setFormDate((prevState) => ({ ...prevState, [e.target.id]: e.target.value }))
     }
 
+    async function onSubmit(e) {
+        e.preventDefault()
+
+        try {
+            //在Authentication 建立帳號
+            const auth = getAuth()
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password)
+            updateProfile(auth.currentUser, { displayName: name })
+            const user = userCredential.user
+
+            const formDataCopy = { ...formData }
+            delete formDataCopy.password
+            formDataCopy.timestamp = serverTimestamp()
+
+            // 帳號寫進DB
+            await setDoc(doc(db, "users", user.uid), formDataCopy)
+            navigation("/")
+
+        } catch (error) {
+            console.log()
+            toast.error(`Something went wrong!!`)
+        }
+    }
     return (
         <section>
             <h1 className="text-center font-bold text-3xl mt-6">Sign Up</h1>
@@ -26,7 +56,7 @@ export default function SignUp() {
                         className="w-full rounded-2xl" />
                 </div>
                 <div className="md:w-[67%] lg:w-[40%] w-full lg:ml-20">
-                    <form>
+                    <form onSubmit={onSubmit}>
                         <input
                             type="text"
                             id="name"
