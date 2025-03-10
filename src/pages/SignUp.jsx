@@ -92,7 +92,7 @@ export default function SignUp() {
                         </div>
                         <button
                             type="submit"
-                            className="flex justify-center rounded-xl py-1 w-3/4 mx-auto mb-3 shadow-md text-md uppercase text-white bg-blue-500 hover:bg-blue-600 duration-200 ease-in-out active:bg-blue-700"
+                            className="flex justify-center rounded-xl py-2 w-3/4 mx-auto mb-3 shadow-md text-md uppercase text-white bg-blue-500 hover:bg-blue-600 duration-200 ease-in-out active:bg-blue-700"
                         >Sign Up
                         </button>
                         <div className="flex items-center mb-3

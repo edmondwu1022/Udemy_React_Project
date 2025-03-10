@@ -1,9 +1,12 @@
 import { useState } from "react"
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai"
-import { Link } from "react-router"
+import { Link, useNavigate } from "react-router"
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
+import { toast } from "react-toastify"
 import OAuth from "../components/OAuth"
 
 export default function SignIn() {
+    const navigation = useNavigate()
     const [showPassword, setShowPassword] = useState(false)
     const [formData, setFormDate] = useState({
         email: '',
@@ -13,6 +16,22 @@ export default function SignIn() {
 
     function onChange(e) {
         setFormDate((prevState) => ({ ...prevState, [e.target.id]: e.target.value }))
+    }
+
+    async function onSubmit(e) {
+        e.preventDefault()
+
+        try {
+            const auth = getAuth()
+            const userCredential = await signInWithEmailAndPassword(auth, email, password)
+            const user = userCredential.user
+
+            if (user)
+                navigation("/")
+
+        } catch (error) {
+            toast.error(`Erro`)
+        }
     }
 
 
@@ -26,7 +45,7 @@ export default function SignIn() {
                         className="w-full rounded-2xl" />
                 </div>
                 <div className="md:w-[67%] lg:w-[40%] w-full lg:ml-20">
-                    <form >
+                    <form onSubmit={onSubmit} >
                         <input
                             type="email"
                             id="email"
